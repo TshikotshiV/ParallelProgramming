@@ -1,0 +1,17 @@
+The parallelDriverClass takes command arguments as follows:
+
+<sort> <arraySizeMin> <arraySizeMax> <arraySizeIncr> <outFileName>
+
+where
+<sort>            is a word that specifies the sorting algorithm, either Mergesort or Quicksort or, optionally,
+Altsort;
+<arraySizeMin>    size of the smallest (random) array of integers to be sorted
+<arraySizeMax>    size of the largest (random) array of integers to be sorted
+<arraySizeIncr>   the step size for increasing the array of integers to be sorted
+<outFileName>     is the name of the file to which the output data will be written.
+The output file, <outFileName>, should consist of successive lines :
+
+<arraySizeMin> <optimalNumThreads> <bestTime> <bestSpeedup>
+<arraySizeMin+arraySizeIncr> <optimalNumThreads> <bestTime> <bestSpeedup>
+...
+<arraySizeMax> <optimalNumThreads> <bestTime> <bestSpeedup>
