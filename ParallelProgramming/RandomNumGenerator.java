@@ -1,7 +1,13 @@
 package asigments;
 
 import java.util.Random;
+/*
+ * NAME:TSHIKOTSHI VHUTALI
+ * STD NO:TSHVHU003
+ * CSC2002S ASSIGMENT 1
+ */
 
+//Random number generator class
 public class RandomNumGenerator {
 	public static int[] createRandomArray(int sizeOfArray) {
 		Random randomNumbers = new Random(123L);

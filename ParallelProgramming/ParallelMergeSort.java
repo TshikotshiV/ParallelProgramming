@@ -1,7 +1,15 @@
 package asigments;
 
 import java.util.Arrays;
+
 import java.util.concurrent.RecursiveAction;
+
+/*
+ * NAME:TSHIKOTSHI VHUTALI
+ * STD NO:TSHVHU003
+ * CSC2002S ASSIGMENT 1
+ */
+
 
 public class ParallelMergeSort extends RecursiveAction {
 	private int[] arr;
@@ -27,15 +35,15 @@ public class ParallelMergeSort extends RecursiveAction {
 
             // Sort halves in parallel
             int mid = start + (end-start) / 2;
-           // invokeAll(//execute two or more tasks in parallel
-                //    new ParallelMergeSort(arr, start, mid, threshold),
-                   // new ParallelMergeSort(arr, mid, end, threshold) );
+          invokeAll(//execute two or more tasks in parallel
+                   new ParallelMergeSort(arr, start, mid, threshold),
+                   new ParallelMergeSort(arr, mid, end, threshold) );
             
-            ParallelMergeSort left  =   new ParallelMergeSort(arr, start, mid, threshold);
+          /*  ParallelMergeSort left  =   new ParallelMergeSort(arr, start, mid, threshold);
             ParallelMergeSort right =  new ParallelMergeSort(arr, mid, end, threshold) ;
             left.fork();
             right.compute();
-            left.join();
+            left.join();*/
             // sequential merge,i.e.merge the sorted halves into a whole
             sequentialMerge(mid);
     }
