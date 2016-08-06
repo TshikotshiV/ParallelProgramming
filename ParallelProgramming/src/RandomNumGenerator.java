@@ -17,18 +17,20 @@ public class RandomNumGenerator {
 		}
 		return num;
 	}
-
 	//check if the array is sorted
 	public static boolean isArraySorted(int[] arr,int lo,int hi){
 		int minV = Integer.MIN_VALUE;
-		/*for (int value : data) {
-			if (value < last) {
+		for(int i =lo;i<hi;i++){
+			if(arr[i] < minV){
 				return false;
 			}
-			last = value;
+			minV = arr[i];
 		}
-		return true;*/
-		for(int i =lo;i<hi;i++){
+		return true;
+	}
+	public static boolean isArraySorted(int[] arr){
+		int minV = Integer.MIN_VALUE;
+		for(int i =0;i<arr.length;i++){
 			if(arr[i] < minV){
 				return false;
 			}

@@ -9,21 +9,26 @@ import java.util.concurrent.RecursiveAction;
  * STD NO:TSHVHU003
  * CSC2002S ASSIGMENT 1
  */
-
-
 public class ParallelMergeSort extends RecursiveAction {
 	private int[] arr;
     private int start, end;
     private int threshold;
 
-    //Parameterized constructor
+    /**Constructor
+     * @param:Array
+     * @param:start index inclusive
+     * @param:end index inclusive
+     * @param:sequential cut off
+     */
     public ParallelMergeSort(int[] arr, int start, int end, int threshold) {
             this.arr = arr;
             this.start = start;
             this.end = end;
             this.threshold = threshold;
     }
-
+    public ParallelMergeSort(int[] arr) {
+        this.arr = arr;
+   }
     @Override
     //override compute
     protected void compute() {
@@ -32,28 +37,23 @@ public class ParallelMergeSort extends RecursiveAction {
                     Arrays.sort(arr, start, end);
                     return;
             }
-
             // Sort halves in parallel
             int mid = start + (end-start) / 2;
-          invokeAll(//execute two or more tasks in parallel
-                   new ParallelMergeSort(arr, start, mid, threshold),
-                   new ParallelMergeSort(arr, mid, end, threshold) );
-            
-          /*  ParallelMergeSort left  =   new ParallelMergeSort(arr, start, mid, threshold);
+            ParallelMergeSort left  =   new ParallelMergeSort(arr, start, mid, threshold);
             ParallelMergeSort right =  new ParallelMergeSort(arr, mid, end, threshold) ;
             left.fork();
             right.compute();
-            left.join();*/
+            left.join();
             // sequential merge,i.e.merge the sorted halves into a whole
             sequentialMerge(mid);
     }
-
     private void sequentialMerge(int mid) {
-         //checking if the array is sorted,if so,then skip the merging process
+        
     	int index1 = mid;
     	int index2 = mid - 1;
     	int sizeNew = end - start;//size of the new array
     	int[] newArray = new int[sizeNew];
+    	 //checking if the array is sorted,if so,then skip the merging process
     	if (arr[index2] < arr[index1]) {
             return; 
         }
@@ -74,6 +74,7 @@ public class ParallelMergeSort extends RecursiveAction {
 
         for (int i = start, x = newArrayStart, y = newArrayMid; i < end; i++) {
             if (y >= newArrayEnd || (x < newArrayMid && newArray[x] < newArray[y]) ) {
+            	//fill the left and right sublist
                 arr[i] = newArray[x++];//post increment
             } else {
                 arr[i] = newArray[y++];//post increment
